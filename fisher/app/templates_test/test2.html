@@ -1,0 +1,19 @@
+{% extend 'layout.html' %}    {#填充}
+{% block conter %}
+    {{ super() }}             {#继承}
+    {% if data.age<18 %}
+        {{ data.name }}
+    {% elif data.age == 18 % }
+        {{ data.age }}
+        {% set messages1 = get_flashed_messages() %}
+        {{messages1}}           {#作用域在整个block}
+        {% with messages2 = get_flashed_messages() %}
+        {{messages2}}
+        {% endwith %}            {#作用域在with 内}
+    {% else %}
+        do something
+    {% endif %}
+{% endblock %}
+{#过滤器}
+{{data.shool | default(data.shool) | default('未名) }}
+  '|'   {#类似于管道命令}
